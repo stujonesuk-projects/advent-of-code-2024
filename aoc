@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+
+import os
+import argparse
+from time import perf_counter_ns
+from glob import glob
+from importlib import import_module
+from os.path import relpath
+
+def get_input_file(day, part, sample):
+    base_path = os.path.join(os.path.dirname(__file__), f'{'sample-' if sample else ''}input', f'day{day:02d}*')
+    paths = glob(base_path)
+    part_file = [path for path in paths if path[-2:] == f'-{part}']
+    generic_file = [path for path in paths if path[-5:] == f'day{day:02d}']
+    if part_file:
+        return part_file[0]
+    if generic_file:
+        return generic_file[0]
+    return None
+
+def get_solution_module(day, part):
+    if part not in (1,2):
+        return None
+    base_path = os.path.join(os.path.dirname(__file__), 'solutions', f'day{day:02d}', f'part-{'two' if part == 2 else 'one'}.py')
+    paths = glob(base_path)
+    if not paths:
+        return None
+    return relpath(paths[0])[:-3].replace('/','.')
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--day', '-d', help='The day to run (default = all)', default=0, type=int)
+    parser.add_argument('--part', '-p', help='The part to run (default = all)', default=0, type=int)
+    parser.add_argument('--sample', '-s', help='Run sample input', action='store_true')
+    args = parser.parse_args()
+    if args.day == 0:
+        day_range = range(1,26)
+    else:
+        day_range = [args.day]
+    
+    if args.part == 0:
+        part_range = range(1,3)
+    else:
+        part_range = [args.part]
+
+    start = perf_counter_ns()
+    for day in day_range:
+        for part in part_range:
+            start_text = f'#####   DAY {day} - PART {part} {'- SAMPLE DATA ' if args.sample else ''}  #######################################\n'
+            print(start_text)
+            input_file = get_input_file(day, part, args.sample)
+            if not input_file:
+                print('    NO INPUT FILE FOUND, SKIPPING')
+                print(f'\n{'#' * (len(start_text) - 1)}')
+                continue
+            print(f'    INPUT FILE:      {relpath(input_file)}')
+            solution_module = get_solution_module(day, part)
+            if not solution_module:
+                print('    NO SOLUTION MODULE FOUND, SKIPPING')
+                print(f'\n{'#' * (len(start_text) - 1)}')
+                continue
+            print(f'    SOLUTION MODULE: {solution_module}')
+            answer_fn = import_module(solution_module).answer
+            start_answer = perf_counter_ns()
+            with open(input_file, 'r') as input:
+                data = input.read().split('\n')
+            answer = answer_fn(data)
+            end_answer = perf_counter_ns()
+            print(f'    ANSWER:          {answer}')
+            print(f'    EXECUTION TIME:  {((end_answer-start_answer)/1000000):.2f} milliseconds')
+            print(f'\n{'#' * (len(start_text) - 1)}')
+    end = perf_counter_ns()
+    print(f'TOTAL EXECUTION TIME:  {((end-start)/1000000):.2f} milliseconds')
+main()
