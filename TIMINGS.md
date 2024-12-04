@@ -3,7 +3,7 @@
     INPUT FILE:      input/day01
     SOLUTION MODULE: solutions.day01.part-one
     ANSWER:          2166959
-    EXECUTION TIME:  0.78 milliseconds
+    EXECUTION TIME:  0.73 milliseconds
 
 ---
 # DAY 1 - PART 2 
@@ -11,7 +11,7 @@
     INPUT FILE:      input/day01
     SOLUTION MODULE: solutions.day01.part-two
     ANSWER:          23741109
-    EXECUTION TIME:  0.58 milliseconds
+    EXECUTION TIME:  0.54 milliseconds
 
 ---
 # DAY 2 - PART 1 
@@ -19,7 +19,7 @@
     INPUT FILE:      input/day02
     SOLUTION MODULE: solutions.day02.part-one
     ANSWER:          321
-    EXECUTION TIME:  1.20 milliseconds
+    EXECUTION TIME:  1.21 milliseconds
 
 ---
 # DAY 2 - PART 2 
@@ -27,7 +27,7 @@
     INPUT FILE:      input/day02
     SOLUTION MODULE: solutions.day02.part-two
     ANSWER:          386
-    EXECUTION TIME:  3.25 milliseconds
+    EXECUTION TIME:  3.37 milliseconds
 
 ---
 # DAY 3 - PART 1 
@@ -43,17 +43,23 @@
     INPUT FILE:      input/day03
     SOLUTION MODULE: solutions.day03.part-two
     ANSWER:          107862689
-    EXECUTION TIME:  0.45 milliseconds
+    EXECUTION TIME:  0.58 milliseconds
 
 ---
 # DAY 4 - PART 1 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day04
+    SOLUTION MODULE: solutions.day04.part-one
+    ANSWER:          2500
+    EXECUTION TIME:  50.75 milliseconds
 
 ---
 # DAY 4 - PART 2 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day04
+    SOLUTION MODULE: solutions.day04.part-two
+    ANSWER:          1933
+    EXECUTION TIME:  38.61 milliseconds
 
 ---
 # DAY 5 - PART 1 
@@ -266,4 +272,4 @@
     NO INPUT FILE FOUND, SKIPPING
 
 ---
-TOTAL EXECUTION TIME:  10.33 milliseconds
+TOTAL EXECUTION TIME:  100.85 milliseconds
