@@ -82,8 +82,8 @@ class Board:
                 values.append(value)
         return values
     
-    def all_cells(self, value = None):
+    def all_cells(self, *values):
         for a in self.cells.values():
             for b in a.values():
-                if value is None or b.value == value:
+                if values is [] or b.value in values:
                     yield b
