@@ -14,7 +14,9 @@ class Cell:
         self.x = x
         self.y = y
         self.value = value
+        self.initial_value = value
         self.neighbours = { i:None for i in range(8) }
+        self.value_history = []
     
     def connect_neighbours(self, cells):
         for k in self.neighbours.keys():
@@ -27,6 +29,10 @@ class Cell:
             if self.neighbours[direction] is not None:
                 values.add(self.neighbours[direction].value)
         return values
+    
+    def change_value(self, new_value):
+        self.value_history.append(self.value)
+        self.value = new_value
 
 class Board:
     def __init__(self, data):
@@ -70,6 +76,13 @@ class Board:
         if direction == 7:
             return self.edges["right"]
 
+    def cell_at(self, x, y):
+        if x < 0 or x > self.max_x:
+            return None
+        if y < 0 or y > self.max_y:
+            return None
+        return self.cells[y][x]
+
     def walk(self):
         values = []
         for direction in directions.keys():
@@ -85,5 +98,11 @@ class Board:
     def all_cells(self, *values):
         for a in self.cells.values():
             for b in a.values():
-                if values is [] or b.value in values:
+                if values == [] or b.value in values:
                     yield b
+
+    def reset(self):
+        for a in self.cells.values():
+            for b in a.values():
+                b.value = b.initial_value
+                b.value_history = []
