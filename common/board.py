@@ -34,9 +34,13 @@ class Cell:
         self.value_history.append(self.value)
         self.value = new_value
 
+    def coords(self):
+        return (self.x, self.y)
+
 class Board:
     def __init__(self, data):
         self.cells = {}
+        self.values = set()
         self.max_y = 0
         self.max_x = 0
         for y, line in enumerate(data):
@@ -46,6 +50,7 @@ class Board:
             for x, value in enumerate(line):
                 if x > self.max_x:
                     self.max_x = x
+                self.values.add(value)
                 cell = Cell(x,y,value)
                 self.cells[y][x] = cell
         for v in self.cells.values():
