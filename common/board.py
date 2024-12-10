@@ -30,6 +30,13 @@ class Cell:
                 values.add(self.neighbours[direction].value)
         return values
     
+    def neighbour_cells(self, direction_list):
+        cells = set()
+        for direction in direction_list:
+            if self.neighbours[direction] is not None:
+                cells.add(self.neighbours[direction])
+        return cells
+    
     def change_value(self, new_value):
         self.value_history.append(self.value)
         self.value = new_value
@@ -38,7 +45,7 @@ class Cell:
         return (self.x, self.y)
 
 class Board:
-    def __init__(self, data):
+    def __init__(self, data, parse_as_int = False):
         self.cells = {}
         self.values = set()
         self.max_y = 0
@@ -48,6 +55,8 @@ class Board:
                 self.max_y = y
             self.cells[y] = {}
             for x, value in enumerate(line):
+                if parse_as_int:
+                    value = int(value)
                 if x > self.max_x:
                     self.max_x = x
                 self.values.add(value)
