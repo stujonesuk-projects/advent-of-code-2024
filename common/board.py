@@ -136,3 +136,12 @@ class Board:
             for b in a.values():
                 b.value = b.initial_value
                 b.value_history = []
+
+    def wrap_edges(self):
+        for x in range(self.max_x + 1):
+            self.cell_at(x, 0).neighbours[1] = self.cell_at(x, self.max_y)
+            self.cell_at(x, self.max_y).neighbours[5] = self.cell_at(x, 0)
+
+        for y in range(self.max_y + 1):
+            self.cell_at(0, y).neighbours[7] = self.cell_at(self.max_x, y)
+            self.cell_at(self.max_x, y).neighbours[3] = self.cell_at(0, y)

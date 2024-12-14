@@ -6,6 +6,7 @@ from time import perf_counter_ns
 from glob import glob
 from importlib import import_module
 from os.path import relpath
+from os import environ
 
 def get_input_file(day, part, sample):
     base_path = os.path.join(os.path.dirname(__file__), f'{'sample-' if sample else ''}input', f'day{day:02d}*')
@@ -64,6 +65,7 @@ def main():
             start_answer = perf_counter_ns()
             with open(input_file, 'r') as input:
                 data = input.read().split('\n')
+            environ['IS_SAMPLE'] = str(args.sample)
             answer = answer_fn(data)
             end_answer = perf_counter_ns()
             print(f'    ANSWER:          {answer}')
