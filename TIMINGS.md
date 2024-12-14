@@ -190,12 +190,18 @@
 ---
 # DAY 13 - PART 1 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day13
+    SOLUTION MODULE: solutions.day13.part-one
+    ANSWER:          36954
+    EXECUTION TIME:  2.21 milliseconds
 
 ---
 # DAY 13 - PART 2 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day13
+    SOLUTION MODULE: solutions.day13.part-two
+    ANSWER:          79352015273424
+    EXECUTION TIME:  4.98 milliseconds
 
 ---
 # DAY 14 - PART 1 
