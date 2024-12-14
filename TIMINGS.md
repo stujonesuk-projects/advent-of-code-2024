@@ -176,12 +176,16 @@
 ---
 # DAY 12 - PART 1 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day12
+    SOLUTION MODULE: solutions.day12.part-one
+    ANSWER:          1465968
+    EXECUTION TIME:  1068.16 milliseconds
 
 ---
 # DAY 12 - PART 2 
 
-    NO INPUT FILE FOUND, SKIPPING
+    INPUT FILE:      input/day12
+    NO SOLUTION MODULE FOUND, SKIPPING
 
 ---
 # DAY 13 - PART 1 

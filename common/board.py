@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 directions = {
     0: (-1,-1),
     1: (0,-1),
@@ -17,6 +19,7 @@ class Cell:
         self.initial_value = value
         self.neighbours = { i:None for i in range(8) }
         self.value_history = []
+        self.metadata = defaultdict(None)
     
     def connect_neighbours(self, cells):
         for k in self.neighbours.keys():
@@ -36,7 +39,20 @@ class Cell:
             if self.neighbours[direction] is not None:
                 cells.add(self.neighbours[direction])
         return cells
-    
+
+    def neighbour_cells_generator(self, direction_list):
+        for direction in direction_list:
+            if self.neighbours[direction] is not None:
+                yield self.neighbours[direction] 
+
+    def neighbour_cells_in_list(self, direction_list, cell_list):
+        cells = set()
+        for direction in direction_list:
+            if self.neighbours[direction] is not None:
+                if self.neighbours[direction] in cell_list:
+                    cells.add(self.neighbours[direction])
+        return cells
+
     def change_value(self, new_value):
         self.value_history.append(self.value)
         self.value = new_value
